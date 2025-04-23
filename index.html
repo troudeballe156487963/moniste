@@ -148,43 +148,106 @@
                 <p><strong>Intensité (I)</strong> : L'intensité, mesurée en Ampères (A), est la quantité de courant électrique circulant dans un circuit. Elle est inversement proportionnelle à la tension lorsqu'on connaît la puissance.</p>
             </div>
         </div>
+
+        <!-- Calculatrice Résistance -->
+        <div class="calculator">
+            <h2>🔢 Calculatrice de Résistance (R = U / I)</h2>
+            <label for="uResistance">Tension (U) en Volts :</label>
+            <input type="number" id="uResistance" placeholder="ex: 230">
+
+            <label for="iResistance">Intensité (I) en Ampères :</label>
+            <input type="number" id="iResistance" placeholder="ex: 4">
+
+            <button onclick="calculerResistance()">Calculer la résistance</button>
+
+            <div class="result" id="resultatResistance"></div>
+
+            <!-- Explication sous la calculatrice -->
+            <div class="explanation">
+                <p><strong>Tension (U)</strong> : La tension, exprimée en Volts (V), est la différence de potentiel qui pousse les électrons à travers un conducteur.</p>
+                <p><strong>Intensité (I)</strong> : L'intensité, mesurée en Ampères (A), représente le flux d'électrons qui traverse un conducteur.</p>
+                <p><strong>Résistance (R)</strong> : La résistance, mesurée en Ohms (Ω), s'oppose au passage du courant dans un conducteur. Elle est calculée par la formule <strong>R = U / I</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Calculatrice d'énergie -->
+        <div class="calculator">
+            <h2>🔢 Calculatrice d'Énergie (E = P × t)</h2>
+            <label for="pEnergie">Puissance (P) en Watts :</label>
+            <input type="number" id="pEnergie" placeholder="ex: 500">
+
+            <label for="tEnergie">Temps (t) en heures :</label>
+            <input type="number" id="tEnergie" placeholder="ex: 2">
+
+            <button onclick="calculerEnergie()">Calculer l'énergie</button>
+
+            <div class="result" id="resultatEnergie"></div>
+
+            <!-- Explication sous la calculatrice -->
+            <div class="explanation">
+                <p><strong>Puissance (P)</strong> : La puissance, mesurée en Watts (W), est la quantité d'énergie utilisée par un appareil par unité de temps.</p>
+                <p><strong>Temps (t)</strong> : Le temps, mesuré en heures (h), représente la durée pendant laquelle l'appareil fonctionne.</p>
+                <p><strong>Énergie (E)</strong> : L'énergie, mesurée en Watt-heures (Wh), est calculée en multipliant la puissance par le temps : <strong>E = P × t</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Calculatrice Courant Série -->
+        <div class="calculator">
+            <h2>🔢 Calculatrice Courant dans un Circuit en Série (I = V / R)</h2>
+            <label for="vSerie">Tension (V) en Volts :</label>
+            <input type="number" id="vSerie" placeholder="ex: 12">
+
+            <label for="rSerie">Résistance (R) en Ohms :</label>
+            <input type="number" id="rSerie" placeholder="ex: 2">
+
+            <button onclick="calculerCourantSerie()">Calculer l'intensité</button>
+
+            <div class="result" id="resultatCourantSerie"></div>
+
+            <!-- Explication sous la calculatrice -->
+            <div class="explanation">
+                <p><strong>Tension (V)</strong> : La tension, exprimée en Volts (V), est la différence de potentiel entre deux points d'un circuit.</p>
+                <p><strong>Résistance (R)</strong> : La résistance, mesurée en Ohms (Ω), est l'opposition au passage du courant dans le conducteur.</p>
+                <p><strong>Courant (I)</strong> : Le courant, mesuré en Ampères (A), est la quantité d'électrons qui traverse un circuit. Dans un circuit en série, il est calculé par la formule <strong>I = V / R</strong>.</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Fonction de calcul pour la puissance (P = U * I)
-        function calculerPuissance() {
-            const u = parseFloat(document.getElementById("uPuissance").value);
-            const i = parseFloat(document.getElementById("iPuissance").value);
+        // Fonction pour calculer la résistance
+        function calculerResistance() {
+            const u = parseFloat(document.getElementById("uResistance").value);
+            const i = parseFloat(document.getElementById("iResistance").value);
             if (isNaN(u) || isNaN(i)) {
-                document.getElementById("resultatPuissance").textContent = "Merci de remplir correctement les champs.";
+                document.getElementById("resultatResistance").textContent = "Merci de remplir correctement les champs.";
                 return;
             }
-            const puissance = u * i;
-            document.getElementById("resultatPuissance").textContent = `Puissance = ${puissance.toFixed(2)} W`;
+            const resistance = u / i;
+            document.getElementById("resultatResistance").textContent = `Résistance = ${resistance.toFixed(2)} Ω`;
         }
 
-        // Fonction de calcul pour la tension (U = P / I)
-        function calculerTension() {
-            const p = parseFloat(document.getElementById("pTension").value);
-            const i = parseFloat(document.getElementById("iTension").value);
-            if (isNaN(p) || isNaN(i)) {
-                document.getElementById("resultatTension").textContent = "Merci de remplir correctement les champs.";
+        // Fonction pour calculer l'énergie
+        function calculerEnergie() {
+            const p = parseFloat(document.getElementById("pEnergie").value);
+            const t = parseFloat(document.getElementById("tEnergie").value);
+            if (isNaN(p) || isNaN(t)) {
+                document.getElementById("resultatEnergie").textContent = "Merci de remplir correctement les champs.";
                 return;
             }
-            const tension = p / i;
-            document.getElementById("resultatTension").textContent = `Tension = ${tension.toFixed(2)} V`;
+            const energie = p * t;
+            document.getElementById("resultatEnergie").textContent = `Énergie = ${energie.toFixed(2)} Wh`;
         }
 
-        // Fonction de calcul pour l'intensité (I = P / U)
-        function calculerIntensite() {
-            const p = parseFloat(document.getElementById("pIntensite").value);
-            const u = parseFloat(document.getElementById("uIntensite").value);
-            if (isNaN(p) || isNaN(u)) {
-                document.getElementById("resultatIntensite").textContent = "Merci de remplir correctement les champs.";
+        // Fonction pour calculer l'intensité en circuit série
+        function calculerCourantSerie() {
+            const v = parseFloat(document.getElementById("vSerie").value);
+            const r = parseFloat(document.getElementById("rSerie").value);
+            if (isNaN(v) || isNaN(r)) {
+                document.getElementById("resultatCourantSerie").textContent = "Merci de remplir correctement les champs.";
                 return;
             }
-            const intensite = p / u;
-            document.getElementById("resultatIntensite").textContent = `Intensité = ${intensite.toFixed(2)} A`;
+            const courant = v / r;
+            document.getElementById("resultatCourantSerie").textContent = `Courant = ${courant.toFixed(2)} A`;
         }
     </script>
 </body>
