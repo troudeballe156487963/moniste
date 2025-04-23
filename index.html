@@ -3,137 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculatrices Électriques</title>
+    <title>Moniste - Calculatrices Électriques</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
             margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
+            padding: 0;
             color: #333;
         }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
         .calculator {
             background-color: #fff;
             padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
         }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
         input {
+            width: 100%;
             padding: 10px;
-            margin: 10px;
-            width: 200px;
-            border: 1px solid #ccc;
+            margin-bottom: 15px;
             border-radius: 5px;
+            border: 1px solid #ddd;
         }
+
         button {
-            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 100%;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         .result {
+            background-color: #e7f7e7;
+            padding: 10px;
+            border: 1px solid #d0f0c0;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .explanation {
+            background-color: #f9f9f9;
+            padding: 15px;
             margin-top: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+            font-size: 0.95em;
             color: #333;
+        }
+
+        .explanation p {
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h2>Bienvenue sur mon site de calculatrices électriques</h2>
 
-    <h1>Calculatrices Électriques</h1>
+        <!-- Calculatrice Puissance -->
+        <div class="calculator">
+            <h2>🔢 Calculatrice de Puissance (P = U × I)</h2>
+            <label for="uPuissance">Tension (U) en Volts :</label>
+            <input type="number" id="uPuissance" placeholder="ex: 230">
+            
+            <label for="iPuissance">Intensité (I) en Ampères :</label>
+            <input type="number" id="iPuissance" placeholder="ex: 4">
 
-    <!-- Calculatrice 1: P = U × I -->
-    <div class="calculator">
-        <h2>🔢 Calculatrice de Puissance (P = U × I)</h2>
-        <label for="uPuissance">Tension (U) en Volts :</label>
-        <input type="number" id="uPuissance" placeholder="ex: 230">
-        
-        <label for="iPuissance">Intensité (I) en Ampères :</label>
-        <input type="number" id="iPuissance" placeholder="ex: 4">
+            <button onclick="calculerPuissance()">Calculer la puissance</button>
 
-        <button onclick="calculerPuissance()">Calculer la puissance</button>
+            <div class="result" id="resultatPuissance"></div>
 
-        <div class="result" id="resultatPuissance"></div>
-    </div>
+            <!-- Explication sous la calculatrice -->
+            <div class="explanation">
+                <p><strong>Tension (U)</strong> : La tension, exprimée en Volts (V), est la différence de potentiel électrique entre deux points. Elle permet de faire circuler les électrons à travers un conducteur.</p>
+                <p><strong>Intensité (I)</strong> : L'intensité, mesurée en Ampères (A), représente le débit de courant, c'est-à-dire le nombre d'électrons qui traversent un conducteur en une seconde.</p>
+                <p><strong>Puissance (P)</strong> : La puissance, mesurée en Watts (W), correspond à la quantité d'énergie consommée par un appareil par unité de temps. Elle est calculée par la formule <strong>P = U × I</strong> et donne une idée de l'énergie utilisée.</p>
+            </div>
+        </div>
 
-    <!-- Calculatrice 2: U = P ÷ I -->
-    <div class="calculator">
-        <h2>🔢 Calculatrice de Tension (U = P ÷ I)</h2>
-        <label for="pTension">Puissance (P) en Watts :</label>
-        <input type="number" id="pTension" placeholder="ex: 1000">
+        <!-- Calculatrice Tension -->
+        <div class="calculator">
+            <h2>🔢 Calculatrice de Tension (U = P ÷ I)</h2>
+            <label for="pTension">Puissance (P) en Watts :</label>
+            <input type="number" id="pTension" placeholder="ex: 1000">
 
-        <label for="iTension">Intensité (I) en Ampères :</label>
-        <input type="number" id="iTension" placeholder="ex: 4">
+            <label for="iTension">Intensité (I) en Ampères :</label>
+            <input type="number" id="iTension" placeholder="ex: 4">
 
-        <button onclick="calculerTension()">Calculer la tension</button>
+            <button onclick="calculerTension()">Calculer la tension</button>
 
-        <div class="result" id="resultatTension"></div>
-    </div>
+            <div class="result" id="resultatTension"></div>
 
-    <!-- Calculatrice 3: I = P ÷ U -->
-    <div class="calculator">
-        <h2>🔢 Calculatrice d'Intensité (I = P / U)</h2>
-        <label for="pIntensite">Puissance (P) en Watts :</label>
-        <input type="number" id="pIntensite" placeholder="ex: 1000">
-        
-        <label for="uIntensite">Tension (U) en Volts :</label>
-        <input type="number" id="uIntensite" placeholder="ex: 230">
+            <!-- Explication sous la calculatrice -->
+            <div class="explanation">
+                <p><strong>Puissance (P)</strong> : La puissance, mesurée en Watts (W), correspond à la quantité d'énergie consommée par un appareil. Elle dépend de la tension et de l'intensité du courant.</p>
+                <p><strong>Intensité (I)</strong> : L'intensité, mesurée en Ampères (A), est le flux d'électrons qui traverse un conducteur. C'est la quantité de courant qui passe à travers un circuit électrique.</p>
+                <p><strong>Tension (U)</strong> : La tension, exprimée en Volts (V), est la "force" qui pousse les électrons à travers un conducteur. Plus la tension est élevée, plus l'électron aura d'énergie pour se déplacer dans le circuit.</p>
+            </div>
+        </div>
 
-        <button onclick="calculerIntensite()">Calculer l'intensité</button>
+        <!-- Calculatrice Intensité -->
+        <div class="calculator">
+            <h2>🔢 Calculatrice d'Intensité (I = P / U)</h2>
+            <label for="pIntensite">Puissance (P) en Watts :</label>
+            <input type="number" id="pIntensite" placeholder="ex: 1000">
+            
+            <label for="uIntensite">Tension (U) en Volts :</label>
+            <input type="number" id="uIntensite" placeholder="ex: 230">
 
-        <div class="result" id="resultatIntensite"></div>
+            <button onclick="calculerIntensite()">Calculer l'intensité</button>
+
+            <div class="result" id="resultatIntensite"></div>
+
+            <!-- Explication sous la calculatrice -->
+            <div class="explanation">
+                <p><strong>Puissance (P)</strong> : La puissance, exprimée en Watts (W), mesure l'énergie utilisée par un appareil par unité de temps. Elle est le produit de la tension et de l'intensité.</p>
+                <p><strong>Tension (U)</strong> : La tension, exprimée en Volts (V), représente la différence de potentiel entre deux points d'un circuit. Elle "pousse" les électrons à travers les conducteurs.</p>
+                <p><strong>Intensité (I)</strong> : L'intensité, mesurée en Ampères (A), est la quantité de courant électrique circulant dans un circuit. Elle est inversement proportionnelle à la tension lorsqu'on connaît la puissance.</p>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Fonction de calcul pour la puissance (P = U * I)
         function calculerPuissance() {
             const u = parseFloat(document.getElementById("uPuissance").value);
             const i = parseFloat(document.getElementById("iPuissance").value);
-
             if (isNaN(u) || isNaN(i)) {
                 document.getElementById("resultatPuissance").textContent = "Merci de remplir correctement les champs.";
                 return;
             }
-
-            const p = u * i;
-            document.getElementById("resultatPuissance").textContent = `Puissance = ${p.toFixed(2)} W (P = ${u} × ${i})`;
+            const puissance = u * i;
+            document.getElementById("resultatPuissance").textContent = `Puissance = ${puissance.toFixed(2)} W`;
         }
 
+        // Fonction de calcul pour la tension (U = P / I)
         function calculerTension() {
             const p = parseFloat(document.getElementById("pTension").value);
             const i = parseFloat(document.getElementById("iTension").value);
-
-            if (isNaN(p) || isNaN(i) || i === 0) {
-                document.getElementById("resultatTension").textContent = "Merci de remplir correctement les champs (I ≠ 0).";
+            if (isNaN(p) || isNaN(i)) {
+                document.getElementById("resultatTension").textContent = "Merci de remplir correctement les champs.";
                 return;
             }
-
-            const u = p / i;
-            document.getElementById("resultatTension").textContent = `Tension = ${u.toFixed(2)} V (U = ${p} ÷ ${i})`;
+            const tension = p / i;
+            document.getElementById("resultatTension").textContent = `Tension = ${tension.toFixed(2)} V`;
         }
 
+        // Fonction de calcul pour l'intensité (I = P / U)
         function calculerIntensite() {
             const p = parseFloat(document.getElementById("pIntensite").value);
             const u = parseFloat(document.getElementById("uIntensite").value);
-
-            if (isNaN(p) || isNaN(u) || u === 0) {
-                document.getElementById("resultatIntensite").textContent = "Merci de remplir correctement les champs (U ≠ 0).";
+            if (isNaN(p) || isNaN(u)) {
+                document.getElementById("resultatIntensite").textContent = "Merci de remplir correctement les champs.";
                 return;
             }
-
-            const i = p / u;
-            document.getElementById("resultatIntensite").textContent = `Intensité = ${i.toFixed(2)} A (I = ${p} ÷ ${u})`;
+            const intensite = p / u;
+            document.getElementById("resultatIntensite").textContent = `Intensité = ${intensite.toFixed(2)} A`;
         }
     </script>
-    
 </body>
 </html>
