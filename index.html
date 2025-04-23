@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Électricité pour les nuls ⚡</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #333;
+    }
+    label, input {
+      display: block;
+      margin: 10px 0;
+    }
+    input[type="number"] {
+      padding: 5px;
+      width: 100%;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .formule {
+      background-color: #e0f7fa;
+      padding: 10px;
+      border-left: 5px solid #00acc1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💡 Électricité pour les nuls</h1>
+  <p class="formule">
+    Formule de base : <strong>P = U × I</strong><br>
+    P = Puissance (en Watts) <br>
+    U = Tension (en Volts) <br>
+    I = Intensité (en Ampères)
+  </p>
+
+  <h2>🔢 Calculatrice de Puissance (P = U × I)</h2>
+  <label for="u">Tension (U) en Volts :</label>
+  <input type="number" id="u" placeholder="ex: 230">
+
+  <label for="i">Intensité (I) en Ampères :</label>
+  <input type="number" id="i" placeholder="ex: 10">
+
+  <button onclick="calculerPuissance()">Calculer la puissance</button>
+
+  <div class="result" id="resultatPuissance"></div>
+
+  <h2>🔢 Calculatrice de Tension (U = P / I)</h2>
+  <label for="p">Puissance (P) en Watts :</label>
+  <input type="number" id="p" placeholder="ex: 2300">
+
+  <label for="iTension">Intensité (I) en Ampères :</label>
+  <input type="number" id="iTension" placeholder="ex: 10">
+
+  <button onclick="calculerTension()">Calculer la tension</button>
+
+  <div class="result" id="resultatTension"></div>
+
+  <script>
+    // Fonction pour calculer la puissance (P = U × I)
+    function calculerPuissance() {
+      const u = parseFloat(document.getElementById("u").value);
+      const i = parseFloat(document.getElementById("i").value);
+      if (isNaN(u) || isNaN(i)) {
+        document.getElementById("resultatPuissance").textContent = "Merci de remplir les deux champs pour la puissance.";
+        return;
+      }
+      const p = u * i;
+      document.getElementById("resultatPuissance").textContent = `Puissance = ${p} Watts (P = ${u} × ${i})`;
+    }
+
+    // Fonction pour calculer la tension (U = P / I)
+    function calculerTension() {
+      const p = parseFloat(document.getElementById("p").value);
+      const i = parseFloat(document.getElementById("iTension").value);
+      if (isNaN(p) || isNaN(i)) {
+        document.getElementById("resultatTension").textContent = "Merci de remplir les deux champs pour la tension.";
+        return;
+      }
+      const u = p / i;
+      document.getElementById("resultatTension").textContent = `Tension = ${u} Volts (U = ${p} ÷ ${i})`;
+    }
+  </script>
+
+</body>
+</html>
