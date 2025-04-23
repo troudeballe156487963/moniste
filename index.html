@@ -1,95 +1,139 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Électricité pour les nuls ⚡</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #333;
-    }
-    label, input {
-      display: block;
-      margin: 10px 0;
-    }
-    input[type="number"] {
-      padding: 5px;
-      width: 100%;
-    }
-    .result {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    .formule {
-      background-color: #e0f7fa;
-      padding: 10px;
-      border-left: 5px solid #00acc1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrices Électriques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>💡 Électricité pour les nuls</h1>
-  <p class="formule">
-    Formule de base : <strong>P = U × I</strong><br>
-    P = Puissance (en Watts) <br>
-    U = Tension (en Volts) <br>
-    I = Intensité (en Ampères)
-  </p>
+    <h1>Calculatrices Électriques</h1>
 
-  <h2>🔢 Calculatrice de Puissance (P = U × I)</h2>
-  <label for="u">Tension (U) en Volts :</label>
-  <input type="number" id="u" placeholder="ex: 230">
+    <!-- Calculatrice 1: P = U × I -->
+    <div class="calculator">
+        <h2>🔢 Calculatrice de Puissance (P = U × I)</h2>
+        <label for="uPuissance">Tension (U) en Volts :</label>
+        <input type="number" id="uPuissance" placeholder="ex: 230">
+        
+        <label for="iPuissance">Intensité (I) en Ampères :</label>
+        <input type="number" id="iPuissance" placeholder="ex: 4">
 
-  <label for="i">Intensité (I) en Ampères :</label>
-  <input type="number" id="i" placeholder="ex: 10">
+        <button onclick="calculerPuissance()">Calculer la puissance</button>
 
-  <button onclick="calculerPuissance()">Calculer la puissance</button>
+        <div class="result" id="resultatPuissance"></div>
+    </div>
 
-  <div class="result" id="resultatPuissance"></div>
+    <!-- Calculatrice 2: U = P ÷ I -->
+    <div class="calculator">
+        <h2>🔢 Calculatrice de Tension (U = P ÷ I)</h2>
+        <label for="pTension">Puissance (P) en Watts :</label>
+        <input type="number" id="pTension" placeholder="ex: 1000">
 
-  <h2>🔢 Calculatrice de Tension (U = P / I)</h2>
-  <label for="p">Puissance (P) en Watts :</label>
-  <input type="number" id="p" placeholder="ex: 2300">
+        <label for="iTension">Intensité (I) en Ampères :</label>
+        <input type="number" id="iTension" placeholder="ex: 4">
 
-  <label for="iTension">Intensité (I) en Ampères :</label>
-  <input type="number" id="iTension" placeholder="ex: 10">
+        <button onclick="calculerTension()">Calculer la tension</button>
 
-  <button onclick="calculerTension()">Calculer la tension</button>
+        <div class="result" id="resultatTension"></div>
+    </div>
 
-  <div class="result" id="resultatTension"></div>
+    <!-- Calculatrice 3: I = P ÷ U -->
+    <div class="calculator">
+        <h2>🔢 Calculatrice d'Intensité (I = P / U)</h2>
+        <label for="pIntensite">Puissance (P) en Watts :</label>
+        <input type="number" id="pIntensite" placeholder="ex: 1000">
+        
+        <label for="uIntensite">Tension (U) en Volts :</label>
+        <input type="number" id="uIntensite" placeholder="ex: 230">
 
-  <script>
-    // Fonction pour calculer la puissance (P = U × I)
-    function calculerPuissance() {
-      const u = parseFloat(document.getElementById("u").value);
-      const i = parseFloat(document.getElementById("i").value);
-      if (isNaN(u) || isNaN(i)) {
-        document.getElementById("resultatPuissance").textContent = "Merci de remplir les deux champs pour la puissance.";
-        return;
-      }
-      const p = u * i;
-      document.getElementById("resultatPuissance").textContent = `Puissance = ${p} Watts (P = ${u} × ${i})`;
-    }
+        <button onclick="calculerIntensite()">Calculer l'intensité</button>
 
-    // Fonction pour calculer la tension (U = P / I)
-    function calculerTension() {
-      const p = parseFloat(document.getElementById("p").value);
-      const i = parseFloat(document.getElementById("iTension").value);
-      if (isNaN(p) || isNaN(i)) {
-        document.getElementById("resultatTension").textContent = "Merci de remplir les deux champs pour la tension.";
-        return;
-      }
-      const u = p / i;
-      document.getElementById("resultatTension").textContent = `Tension = ${u} Volts (U = ${p} ÷ ${i})`;
-    }
-  </script>
+        <div class="result" id="resultatIntensite"></div>
+    </div>
 
+    <script>
+        function calculerPuissance() {
+            const u = parseFloat(document.getElementById("uPuissance").value);
+            const i = parseFloat(document.getElementById("iPuissance").value);
+
+            if (isNaN(u) || isNaN(i)) {
+                document.getElementById("resultatPuissance").textContent = "Merci de remplir correctement les champs.";
+                return;
+            }
+
+            const p = u * i;
+            document.getElementById("resultatPuissance").textContent = `Puissance = ${p.toFixed(2)} W (P = ${u} × ${i})`;
+        }
+
+        function calculerTension() {
+            const p = parseFloat(document.getElementById("pTension").value);
+            const i = parseFloat(document.getElementById("iTension").value);
+
+            if (isNaN(p) || isNaN(i) || i === 0) {
+                document.getElementById("resultatTension").textContent = "Merci de remplir correctement les champs (I ≠ 0).";
+                return;
+            }
+
+            const u = p / i;
+            document.getElementById("resultatTension").textContent = `Tension = ${u.toFixed(2)} V (U = ${p} ÷ ${i})`;
+        }
+
+        function calculerIntensite() {
+            const p = parseFloat(document.getElementById("pIntensite").value);
+            const u = parseFloat(document.getElementById("uIntensite").value);
+
+            if (isNaN(p) || isNaN(u) || u === 0) {
+                document.getElementById("resultatIntensite").textContent = "Merci de remplir correctement les champs (U ≠ 0).";
+                return;
+            }
+
+            const i = p / u;
+            document.getElementById("resultatIntensite").textContent = `Intensité = ${i.toFixed(2)} A (I = ${p} ÷ ${u})`;
+        }
+    </script>
+    
 </body>
 </html>
